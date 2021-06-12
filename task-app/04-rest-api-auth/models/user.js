@@ -50,6 +50,18 @@ const userSchema = new mongoose.Schema({
 })
 
 // method available for returned document
+// toJSON not explicitly called 
+// overriden to correct JSON.stringify(obj) result inside res.send(obj) Express method
+userSchema.methods.toJSON = function () {
+    const user = this
+    const userObject = user.toObject()
+
+    delete userObject.password
+    delete userObject.tokens
+
+    return userObject
+}
+
 userSchema.methods.generateAuthToken = async function () {
     const user = this
     const token = jwt.sign({ _id: user._id.toString() }, 'thisismynewcourse')
