@@ -2,12 +2,12 @@ sql     table > row > column
 nosql   collection > document > field
 
 https://www.mongodb.com/try/download/community
-extract zip archive in C:\Users\user\Downloads\mongodb-win32-x86_64-windows-4.4.6\
-    cd in bin
-    create folder for data (f.e. c:\mongobd-data)
-    .\mongod.exe --dbpath=c:\mongobd-data
-    ...waiting for connection on port 27017 // db is active
-
+extract zip archive in C:\mongodb-win32-x86_64-windows-4.4.6\
+    cd C:\mongodb-win32-x86_64-windows-4.4.6\
+    create folder for data (f.e. data)
+    .\bin\mongod.exe --dbpath=data
+    ...{"t":{"$date":"2021-06-12T21:28:40.431+03:00"},"s":"I",  "c":"NETWORK",  "id":23016,   "ctx":"listener","msg":"Waiting for connections","attr":{"port":27017,"ssl":"off"}} // db is active on 27017
+PS C:\mongodb-win32-x86_64-windows-4.4.6> .\bin\mongod.exe --dbpath=data
 
 robomongo.org/download
 Download Robo 3T
