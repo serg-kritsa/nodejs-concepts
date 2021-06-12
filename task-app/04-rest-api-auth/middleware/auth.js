@@ -33,6 +33,7 @@ const auth = async (req, res, next) => {
             throw new Error()
         }
 
+        req.token = token // for logout functionality
         req.user = user
         next()
     } catch (e) {
