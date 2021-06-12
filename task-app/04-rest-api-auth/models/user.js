@@ -49,6 +49,13 @@ const userSchema = new mongoose.Schema({
     }]
 })
 
+// only relationship // not stored in db
+userSchema.virtual('tasks', {
+    localField: '_id',
+    ref: 'Task',
+    foreignField: 'owner'
+})
+
 // method available for returned document
 // toJSON not explicitly called 
 // overriden to correct JSON.stringify(obj) result inside res.send(obj) Express method
