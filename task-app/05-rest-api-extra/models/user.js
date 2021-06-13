@@ -47,9 +47,12 @@ const userSchema = new mongoose.Schema({
             type: String,
             required: true
         }
-    }]
+    }],
+    avatar: {
+        type: Buffer
+    }
 }, {
-    timestamps: true // allowing generation createdAt and updatedAt fields of document
+    timestamps: true
 })
 
 userSchema.virtual('tasks', {
