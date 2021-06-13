@@ -18,18 +18,24 @@ router.post('/tasks', auth, async (req, res) => {
 })
 
 // GET /tasks?completed=true
+// GET /tasks?limit=10&skip=20
 router.get('/tasks', auth, async (req, res) => {
     const match = {}
 
     if (req.query.completed) {
-        //                  way of convertion String to Boolean
+        //                  way of convertion String from request to Boolean
         match.completed = req.query.completed === 'true'
     }
 
     try {
         await req.user.populate({
             path: 'tasks',
-            match // mongoose populate param
+            match, // mongoose populate param for filtering data
+            options: {
+                // mongoose populate params for pagination data
+                limit: parseInt(req.query.limit), // convertion String from request to Boolean
+                skip: parseInt(req.query.skip) // convertion String from request to Boolean
+            }
         }).execPopulate()
         res.send(req.user.tasks)
     } catch (e) {
