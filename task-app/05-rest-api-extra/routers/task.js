@@ -19,12 +19,19 @@ router.post('/tasks', auth, async (req, res) => {
 
 // GET /tasks?completed=true
 // GET /tasks?limit=10&skip=20
+// GET /tasks?sortBy=createdAt:desc
 router.get('/tasks', auth, async (req, res) => {
     const match = {}
+    const sort = {}
 
     if (req.query.completed) {
         //                  way of convertion String from request to Boolean
         match.completed = req.query.completed === 'true'
+    }
+
+    if (req.query.sortBy) {
+        const parts = req.query.sortBy.split(':')
+        sort[parts[0]] = parts[1] === 'desc' ? -1 : 1
     }
 
     try {
@@ -34,7 +41,8 @@ router.get('/tasks', auth, async (req, res) => {
             options: {
                 // mongoose populate params for pagination data
                 limit: parseInt(req.query.limit), // convertion String from request to Boolean
-                skip: parseInt(req.query.skip) // convertion String from request to Boolean
+                skip: parseInt(req.query.skip), // convertion String from request to Boolean
+                sort
             }
         }).execPopulate()
         res.send(req.user.tasks)
