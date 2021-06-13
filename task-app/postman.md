@@ -18,6 +18,13 @@ configure 'No environment' dropdown
     }
     // access to environment variable with {{authToken}}
     Collections > ... (View more actions) > Edit
-        |Auth| > Type +'Bearer Token' > Token ='{{authToken}}'
+        |Auth| > Type +d'Bearer Token' > Token ='{{authToken}}'
 
-Request > |Authorization| > Type +'No Auth' // for not protected route
+Request > |Authorization| > Type +d'No Auth' // for not protected route
+
+
+Request > |Body| > +r'form-data' > 
+    KEY                         VALUE                       DESCRIPTION
+    =name-from-      +'File'    +b'Choose Files' file.ext
+    multer-single       
+  // for not protected route
