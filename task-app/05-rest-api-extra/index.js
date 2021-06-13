@@ -24,6 +24,8 @@ const upload = multer({
                                 // multipart/form-data in post request
 app.post('/upload', upload.single('upload'), (req, res) => {
     res.send()
+}, (error, req, res, next) => {
+    res.status(400).send({ error: error.message }) // catch thrown error
 })
 
 
