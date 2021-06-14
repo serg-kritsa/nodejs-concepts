@@ -1,6 +1,6 @@
 const express = require('express')
 const multer = require('multer')
-const sharp = require('sharp')
+// const sharp = require('sharp')
 const User = require('../models/user')
 const auth = require('../middleware/auth')
 const { sendWelcomeEmail, sendCancelationEmail } = require('../emails/account')
@@ -11,7 +11,7 @@ router.post('/users', async (req, res) => {
 
     try {
         await user.save()
-        sendWelcomeEmail(user.email, user.name)
+        if (process.env.SENDGRID_API_KEY) sendWelcomeEmail(user.email, user.name)
         const token = await user.generateAuthToken()
         res.status(201).send({ user, token })
     } catch (e) {
