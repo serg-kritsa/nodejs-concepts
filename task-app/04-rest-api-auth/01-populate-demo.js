@@ -1,3 +1,6 @@
+// https://mongoosejs.com/docs/populate.html
+// https://mongoosejs.com/docs/api/document.html#document_Document-populate
+
 require('./db/mongoose')
 const Task = require('./models/task')
 const User = require('./models/user')
