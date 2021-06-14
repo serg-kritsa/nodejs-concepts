@@ -77,3 +77,22 @@ test('should delete account for user', async () => {
 test('should not delete account for unauthentificated user', async () => {
     await request(app).get('/users/me').send().expect(401)
 })
+
+test('should upload avatar image', async () => {
+    await request(app).post('/users/me/avatar').set('Authorization', 'Bearer '+ user01.tokens[0].token)
+    .attach('avatar','tests/fixtures/avatar.jpg').expect(200)
+    
+    const userFromDb = await User.findById(userId01)
+    expect(userFromDb.avatar).toEqual(expect.any(Buffer))
+})
+
+test('should update valid user fields', async () => {
+    await request(app).patch('/users/me').set('Authorization', 'Bearer '+ user01.tokens[0].token).send({ name: 'Jess' }).expect(200)
+    
+    const userFromDb = await User.findById(userId01)
+    expect(userFromDb.name).toBe('Jess')
+})
+
+test('should not update valid user fields', async () => {
+    await request(app).patch('/users/me').set('Authorization', 'Bearer '+ user01.tokens[0].token).send({ Location: 'City' }).expect(400)
+})
