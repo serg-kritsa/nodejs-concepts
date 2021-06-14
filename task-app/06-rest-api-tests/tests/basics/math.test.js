@@ -1,4 +1,4 @@
-const {calculateTip, celsiusToFahrenheit, fahrenheitToCelsius, asyncAdd} = require('../src/math')
+const {calculateTip, celsiusToFahrenheit, fahrenheitToCelsius, asyncAdd} = require('./src/math')
 
 test('Should calculate total with tip', () => {
     const total = calculateTip(10, .3)
