@@ -46,9 +46,16 @@ test('should add two numbers w/ async/await', async () => {
     expect(sum).toBe(5)
 })
 
-test('should fail w/ done callback', (done) => {
+test('should pass w/ done callback', (done) => {
     setTimeout(()=>{
-        expect(1).toBe(2)
+        expect(1).toBe(1)
         done()
     },200)
 })
+
+// test('should fail w/ done callback', (done) => {
+//     setTimeout(()=>{
+//         expect(1).toBe(2)
+//         done()
+//     },200)
+// })

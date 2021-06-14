@@ -8,4 +8,7 @@ task-app/package-lock.json
 
 task-app/05-rest-api-extra/config
 
-task-app/06-rest-api-tests/config
+jest-task-app/config
+jest-task-app/node_modules
+jest-task-app/package-lock.json
+
