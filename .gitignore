@@ -1,0 +1,11 @@
+# .gitignore
+
+node-basics/node_modules
+node-basics/package-lock.json
+
+task-app/node_modules
+task-app/package-lock.json
+
+task-app/05-rest-api-extra/config
+
+task-app/06-rest-api-tests/config
