@@ -1,4 +1,5 @@
 # .gitignore
+node_modules
 
 node-basics/node_modules
 node-basics/package-lock.json
@@ -12,3 +13,5 @@ jest-task-app/config
 jest-task-app/node_modules
 jest-task-app/package-lock.json
 
+chat-app/node_modules
+chat-app/package-lock.json
