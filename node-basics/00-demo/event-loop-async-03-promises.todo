@@ -1,0 +1,91 @@
+// TODO in the future w/ EventEmitter
+
+setTimeout( () => console.log('CALLBACK-1, delay:', 2000), 2000 ) 
+nodeApiRegister.push('CALLBACK-1',2000); console.log('NodeAPI:', nodeApiRegister); 
+setTimeout( () => console.log('CALLBACK-2, delay:', 0), 0 )
+nodeApiRegister.push('CALLBACK-2',0); console.log('NodeAPI:', nodeApiRegister);
+const promise01 = new Promise(function (resolve, reject) {
+    console.log(0,'___ new promise01 init/ '); 
+    setTimeout( () => {
+        console.log('CALLBACK-3 promise01, delay:', 0); 
+        resolve('0 ms promise resolved')
+        console.log('CALLBACK-3 promise01,', 11, 'just >>> '); 
+    }, 0)
+    nodeApiRegister.push('CALLBACK-3',0); console.log('NodeAPI:', nodeApiRegister);
+    console.log(0,'___ promise01 /init'); 
+})
+promise01.then( function (data) { console.log(11,'<<<:', data); } )
+console.log(0,11, "WAITING: 0ms timeout promise ");
+
+const promise02 = new Promise(function (resolve, reject) {
+    console.log(0, 22, 'new promise02 init/'); 
+    resolve('instant promise02 resolved')  // instant promise
+    console.log(0,22,'... SENT ...: instant promise');
+    console.log(0, 22, 'promise02 /init'); 
+})
+promise02.then( function (data) { console.log(22,'... RECEIVED ...:',data); } )
+console.log(0, 22, "... WAITING ...: instant promise");
+console.info(0,'sync code ends')
+
+// sync code starts
+// prepare promise01 code
+// prepare promise02 code
+// sync code ends
+// instant promise resolved
+// 0 sec. timeout callback 2 fired
+// 0 sec. timeout promise callback 3 fired
+// 0 sec. promise resolved
+// 2 sec. timeout callback 1 fired
+
+// ====================================================================
+const nodeApiRegister = []
+const eventQueue = []
+const callsStacks = []
+
+function showEventLoop(funcName, timer){
+    nodeApiRegister.push(funcName, timer);
+    console.log('NodeAPI:', nodeApiRegister);
+    setTimeout(
+        () => { eventQueue.push(funcName); console.log('EventQueue:',eventQueue); }, 
+        timer);
+    // if (i>-1){ nodeApiRegister.splice(i,2) }
+}
+
+setTimeout( () => console.log('CALLBACK-1'), 2000 ) 
+// showEventLoop('CALLBACK-1',2000)
+setTimeout( () => console.log('CALLBACK-2'), 0 )
+// showEventLoop('CALLBACK-2',0)
+const promise01 = new Promise(function (resolve, reject) {
+    // console.log('PROMISE-1 init'); 
+    setTimeout( () => {
+        console.log('CALLBACK-3'); 
+        resolve('PROMISE-1 data'); eventQueue.push('PROMISE-1'); // console.log('EventQueue:',eventQueue);
+        console.log('PROMISE-1 just sended data', 'CALLBACK-3/'); 
+    }, 0)
+    // showEventLoop('CALLBACK-3',0)
+    console.log('PROMISE-1 declared'); 
+})
+promise01.then( (data) => { console.log('... RECEIVED ...:', data); } )
+console.log('PROMISE-1 listener ready');
+
+const promise02 = new Promise(function (resolve, reject) {
+    // console.log('PROMISE-2 init'); 
+    resolve('PROMISE-2 data') // instant promise
+    eventQueue.push('PROMISE-2'); // console.log('EventQueue:',eventQueue);
+    console.log('PROMISE-2 just sended data'); 
+    console.log('PROMISE-2 declared'); 
+})
+promise02.then( function (data) { console.log('... RECEIVED ...:',data); } )
+console.log('PROMISE-2 listener ready');
+console.info('====== async code starts ===')
+// console.log('EventQueue to take:',eventQueue);
+
+// sync code starts
+// prepare promise01 code
+// prepare promise02 code
+// sync code ends
+// instant promise resolved
+// 0 sec. timeout callback 2 fired
+// 0 sec. timeout promise callback 3 fired
+// 0 sec. promise resolved
+// 2 sec. timeout callback 1 fired
