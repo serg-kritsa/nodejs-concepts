@@ -1,17 +1,10 @@
 # .gitignore
+
 node_modules
 
-node-basics/node_modules
-node-basics/package-lock.json
-
-task-app/node_modules
-task-app/package-lock.json
+*node_modules
+*package-lock.json
 
 task-app/05-rest-api-extra/config
 
 jest-task-app/config
-jest-task-app/node_modules
-jest-task-app/package-lock.json
-
-chat-app/node_modules
-chat-app/package-lock.json
