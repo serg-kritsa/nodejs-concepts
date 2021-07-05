@@ -1,0 +1,24 @@
+<div style="text-align: center;">
+    <h1>DBG: on from-server</h1>
+    <h2 id="response"></h2>
+    <hr>
+    <h1>Acknowledge data</h1>
+    <h2 id="length"></h2>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+<script>
+
+    const socket = io('http://localhost:8001')
+
+    socket.on('connect',(data)=>{
+        socket.emit('from-client','websocket client',(acknowledgementDataFromServer)=>{
+            document.querySelector('#length').innerText  = acknowledgementDataFromServer.received
+        });
+        socket.on('from-server',(dataFromServer, acknowledgement)=>{
+            document.querySelector('#response').innerText  = dataFromServer
+            acknowledgement({ client: "acknowledged", received: dataFromServer.length })
+        });
+    })
+
+</script>
