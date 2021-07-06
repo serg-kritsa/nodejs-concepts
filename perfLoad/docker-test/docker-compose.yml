@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  redis-server:
+    image: redis
+    volumes:
+      - .:/data
+  redis-client:
+    image: redis
+
+# v1    
+# docker compose exec redis-client redis-cli
+
+# v2    
+# docker compose exec redis-client bash
+#   ls /usr/local/bin/
+#   redis-cli

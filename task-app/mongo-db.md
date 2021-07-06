@@ -26,6 +26,12 @@ the 2nd terminal - npm i mongodb@3.1.10
 
 db.getCollection('users').find({})
 
+show dbs
+use db-name
+show collections
+db.collection-name.find({})
+db.collection-name.remove({})
+
 
 mongodb ObjectID
 https://docs.mongodb.com/manual/reference/method/ObjectId/

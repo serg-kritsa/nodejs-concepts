@@ -55,6 +55,8 @@ canvas.addEventListener('mousemove',(event)=>{
         x: event.clientX,
         y: event.clientY
     };
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/atan2
+    // * 180 / Math.PI // rad to deg
     const angleDeg = Math.atan2(mousePosition.y - (canvas.height/2), mousePosition.x - (canvas.width/2)) * 180 / Math.PI;
     if(angleDeg >= 0 && angleDeg < 90){
         // console.log("Mouse is in the lower right quad")
