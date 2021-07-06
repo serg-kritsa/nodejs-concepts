@@ -16,8 +16,6 @@ services:
       - "6379:6379"
   #   volumes:
   #     - ./redis-data:/data
-  # redis-client:
-  #   image: redis
   node-server:
     build:
       context: .
@@ -34,16 +32,16 @@ services:
       context: .
       dockerfile: node-client.Dockerfile  
   # react-client:   
+  #   build:
+  #     context: .
+  #     dockerfile: react-client.Dockerfile
+  #     target: dev
+  #   # volumes: 
+  #   #   - ./src/react-client:/usr
+  #   ports: 
+  #     - "80:4000"
 # networks:
 #   backend:
 
 # volumes:
 #   db-data:
-
-# v1    
-# docker compose exec redis-client redis-cli
-
-# v2    
-# docker compose exec redis-client bash
-#   ls /usr/local/bin/
-#   redis-cli
