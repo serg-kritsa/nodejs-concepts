@@ -1,0 +1,11 @@
+extends _base
+
+mixin linkBuilder(link, text, active)
+    li(class=`${active ? 'my-style' : '' }`)
+        a(href=`${link}`) #{text}
+
+block extended-block
+    p Placeholder text was overriden
+    +linkBuilder('#', 'Link 1', true)
+    +linkBuilder('#', 'Link 2')
+

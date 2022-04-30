@@ -1,0 +1,22 @@
+// //- comment from template file INVISIBLE in html
+//- INVISIBLE COMMENT in html after rendering
+
+
+
+h1 Hello Pug
+p
+    span Some text 1
+// using ':' instead of indentation
+p: span Some text 2
+
+// // single quotes sensitive syntax
+img(src='./.jpg')
+img(src='./.jpg' alt='image')
+
+
+
+
+
+// // defining js variables in .pug file 
+- const a = 11;
+p= a + 2 * 1
