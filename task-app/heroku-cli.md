@@ -50,3 +50,8 @@
 // git remote // heroku             origin // check that heroku exists
 //     git push heroku master
 //     open deployment-tag-app.heroku.com in browser
+
+
+
+// //                                               change randomly generated app name
+//     heroku apps:rename <new-app-name-for-heroku> // 

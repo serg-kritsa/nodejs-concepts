@@ -11,12 +11,13 @@ configure 'No environment' dropdown
 
 
 
-// javascript code executed after request 
-    request > Tests
+# javascript code executed after request 
+## set environment variable
+    request > |Tests|
     if (pm.response.code === 200) {
         pm.environment.set('authToken', pm.response.json().token)
     }
-    // access to environment variable with {{authToken}}
+## access to environment variable with {{authToken}}
     Collections > ... (View more actions) > Edit
         |Auth| > Type +d'Bearer Token' > Token ='{{authToken}}'
 
