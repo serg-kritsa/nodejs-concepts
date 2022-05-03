@@ -1,0 +1,40 @@
+version: '2'
+
+services: 
+  mongodb: 
+    image: mongo
+    ports: 
+      - "27017:27017"
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: root
+  redis:
+    image: redis
+    ports: 
+      - "6379:6379"
+#   node-server:
+#     build:
+#       context: .
+#       dockerfile: server.Dockerfile
+#       target: prod
+#     ports: 
+#       - "8181:8181"
+#     depends_on:
+#       - mongodb
+#       - redis
+#   node-client:  
+#     build:
+#       context: .
+#       dockerfile: node-client.Dockerfile  
+#       target: prod
+#   react-client:   
+#     build:
+#       context: .
+#       dockerfile: react-client.Dockerfile
+#       target: prod
+#     ports: 
+#       - "3000:3000"
+#     # volumes: 
+#     #   - ./src/react-client:/app
+
+# # # volumes:
+# # #   db-data:
